@@ -8,7 +8,9 @@ Project WAVERLY is a web application, that uses text-to-speech technology provid
 
 WAVERLY supports only English articles.
 
-## WAVERLY is alive 🙌
+![WAVERLY app ios](static/images/waverly_gif.gif)
+
+## WAVERLY is live 🙌
 Go to [https://waverly1.herokuapp.com/](https://waverly1.herokuapp.com/) and see how it works.
 
 ## Standalone Web Application
