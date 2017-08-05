@@ -17,7 +17,7 @@ Go to [https://waverly1.herokuapp.com/](https://waverly1.herokuapp.com/) and see
 WAVERLY works beautifully as a standalone web application. Just go the [WAVERLY URL](https://waverly1.herokuapp.com/) on your mobile device, go to your account page, and save the URL to your home screen.  
 This was tested only on iPhone's Safari.
 
-> ⚠️ Because of a [iOS's limited support for HTML5](http://debuggerdotbreak.judahgabriel.com/2016/12/13/its-almost-2017-and-html5-audio-is-still-broken-on-ios/), when triggering WAVERLY from the home screen, playing an audio file won't work while the app is in the background won't work. For this reason, the recommendation to the user to save the app to the home screen has been commented in the JS code.</br><img src="static/images/homescreen.png" width="240"/>
+> ⚠️ Because of an [iOS's limited support for HTML5](http://debuggerdotbreak.judahgabriel.com/2016/12/13/its-almost-2017-and-html5-audio-is-still-broken-on-ios/), when triggering WAVERLY from the home screen, playing an audio file won't work while the app is in the background won't work. For this reason, the recommendation to the user to save the app to the home screen has been commented in the JS code.</br><img src="static/images/homescreen.png" width="240"/>
 
 
 ## Deploy WAVERLY to Heroku
