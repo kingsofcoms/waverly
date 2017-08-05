@@ -1,0 +1,488 @@
+{% load staticfiles %}
+
+html {
+  background-color: ALICEBLUE;
+  font-family:'Open Sans', sans-serif;
+  font-weight:300;
+  color: #222;
+  font-size: 0.84em;
+}
+
+body{
+  text-align: center;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+
+}
+
+body:before{
+    display: block;
+    content: " ";
+    height:20px;
+    top: 0;
+    background:ALICEBLUE;
+    position:-webkit-sticky;
+    position:sticky;
+}
+
+input[type=text] {
+  background: #FFFFFF;
+  border: 1px solid #C8CCD0;
+  border-radius: 2px;
+  height: 18px;
+  width: 256px;
+  /*font-size: 12px;*/
+  font-size: 16px; /* in order to prevent zoom on mobile */
+  padding: 12px;
+  /*color: #787878;*/
+  display: block;
+  margin: auto;
+}
+
+input[type=text]::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+input[type=submit] {
+    background: #00A5FF;
+    border: 1px solid #0077CC;
+    box-shadow: inset 0 1px 0 0 #66BFFF;
+    width: 204px;
+    height: 42px;
+    color: white;
+    border-radius: 22px;
+    display: block;
+    margin: auto;
+    margin-top: 18px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 13px;
+}
+
+input[type=submit]:focus {
+  outline:0;
+}
+
+input[type=submit]:active {
+  background: #047ED6;
+  box-shadow: inset 0 1px 0 0 #036EBB;
+}
+
+.main {
+  text-align: center;
+  display: inline-block;
+  width: 100vw;
+  max-width: 540px;
+  min-width: 320px;
+}
+
+.main_background {
+  height: 100vh;
+  z-index: -1;
+  background-color: GHOSTWHITE;
+  width: 100vw;
+  max-width: 540px;
+  position: absolute;
+  min-width: 320px;
+  margin: auto;
+  right: 0px;
+  left: 0px;
+  border-left: 0.5px #E0E2E7 solid;
+  border-right: 0.5px #E0E2E7 solid;
+}
+
+.account_background {
+  min-height: 100vh;
+  z-index: -1;
+  background-color: mintcream;
+  /*background-color: rgba(245,245,245,0.4);*/
+  width: 100vw;
+  max-width: 540px;
+  position: absolute;
+  min-width: 320px;
+  margin: auto;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  border-right: 0.5px rgba(161, 184, 204, 0.4) solid;
+  border-left: 0.5px rgba(161, 184, 204, 0.4) solid;
+}
+
+.podcast_background {
+  min-height: 100vh;
+  z-index: -1;
+  background-color: white;
+  width: 100vw;
+  max-width: 540px;
+  position: absolute;
+  min-width: 320px;
+  margin: auto;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  border-right: 0.5px rgba(161, 184, 204, 0.4) solid;
+  border-left: 0.5px rgba(161, 184, 204, 0.4) solid;
+}
+
+.login_container {
+  padding-top: 96px;
+}
+
+.login_title{
+  font-size: 18px;
+  color: #222222;
+  line-height: 28px;
+  max-width: 264px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login_call_to_action{
+  margin-top: 24px;
+  margin-left: 20px;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+.header {
+  height: 64px;
+  background-color: #222;
+  color: white;
+  font-weight: 600;
+  /*box-shadow: 0 1px 2px 0 rgba(0,0,0,0.50);*/
+  border-bottom: 1px solid black;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.header_title{
+  vertical-align: middle;
+}
+
+.logo {
+  width: 36px;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.version {
+  right: 0px;
+  bottom: 0px;
+  position: fixed;
+  color: rgba(255,255,255,1);
+  background-color: rgba(0,0,0,0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 48px;
+  padding-left: 12px;
+}
+
+.post {
+  /*height: 146px;*/
+  height: 132px;
+  padding-top: 96px;
+  border-bottom: 1px solid rgba(200,204,208,0.30);
+  background-color: GHOSTWHITE;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: rgba(120,120,120,0.5);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(120,120,120,0.5);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: rgba(120,120,120,0.5);
+}
+
+.processing {
+  background: rgba(240,242,250,0.50);
+  border: 1px solid #E0E2E7;
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 32px;
+  word-wrap:break-word;
+}
+
+.processing_title {
+  text-align: left;
+  color: #0095FF;
+  font-size: 12px;
+  margin-left: 12px;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.processing_item {
+  text-align: left;
+  margin-left: 12px;
+  font-size: 12px;
+  /*line-height: 10px;*/
+  margin-bottom: 28px;
+}
+
+.podcasts_item {
+  background: white;
+  border: 1px solid #E0E2E7;
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 32px;
+}
+
+.podcasts_image {
+  border-radius: 2px 2px 0px 0px;
+  width: 100%;
+  height: 192px;
+  background-position: center;
+  margin: auto;
+  background-size: cover;
+  /*background-size: 100%;*/
+}
+
+.podcasts_title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 12px;
+}
+
+.podcasts_duration {
+  text-align: left;
+  margin-left: 12px;
+  margin-top: -16px;
+  margin-bottom: 18px;
+  font-size: 12px;
+}
+
+.podcasts_domain {
+  text-align: left;
+  margin-left: 12px;
+  font-size: 12px;
+}
+
+.podcasts_added {
+  text-align: left;
+  margin-left: 12px;
+  margin-top: -10px;
+  font-size: 12px;
+}
+
+.no_podcasts {
+  margin: auto;
+  margin-top: 32px;
+  max-width: 244px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.podcast_header_boost {
+  width: 100%;
+  height: 64px;
+}
+
+.podcast_cover {
+  width: 100%;
+  height: 40vh;
+  background-position: center;
+  margin: auto;
+  background-size: cover;
+}
+
+.podcast_content {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: left;
+  color: #222222;
+}
+
+
+.podcast_title {
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+
+}
+
+.podcast_authors {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  margin-bottom: -6px;
+}
+
+.podcast_domain {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 12px;
+}
+
+.podcast_text {
+  margin-top: 32px;
+  font-size: 12px;
+  line-height: 22px;
+  padding-bottom: 32px;
+  word-wrap:break-word;
+}
+
+.podcast_meta {
+  margin-top: 24px;
+}
+
+.homescreen {
+  bottom: 5vh;
+  position: fixed;
+  width: 100%;
+}
+
+.black {
+  background-color: rgba(0, 0, 0, 0.55);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+}
+
+.playback_button {
+  background-color: rgba(77,77,77,0.5);
+  border-radius: 8px;
+  width: 64px;
+  height: 42px;
+  position: absolute;
+  left: 10px;
+  top: 74px;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 42px;
+}
+
+.playback_button:hover {
+  cursor:pointer;
+}
+
+.playback_button:active {
+  background: rgba(77,77,77,1);
+}
+
+.menu_button {
+  background-color: rgba(77,77,77,0.5);
+  /*-webkit-filter: blur(10px);*/
+  /*filter: blur(10px);*/
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  right: 10px;
+  top: 74px;
+}
+
+.menu_button:hover {
+  cursor:pointer;
+}
+
+.menu_button:focus {
+  background: rgba(77,77,77,0.6);
+}
+
+.menu_button:active {
+  background: rgba(77,77,77,1);
+}
+
+.menu_panel {
+  height: 70vh;
+  background: #FAFAFA;
+  bottom: 0px;
+  position: fixed;
+  max-width: 540px;
+  min-width: 320px;
+  width: 100%;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.20);
+  overflow: scroll;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu_panel_title {
+  color: #8F8E94;
+  text-shadow: 1px 1px 0 rgba(255,255,255,1);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.menu_panel_item {
+  background: white;
+  border-top: 1px solid #E0E2E7;
+  border-bottom: 1px solid #E0E2E7;
+  height: 57px;
+  margin-top: -1px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 400;
+}
+
+.share {
+  line-height: 57px;
+}
+
+.share:hover {
+  cursor:pointer;
+}
+
+.menu_panel_item:hover {
+  cursor:pointer;
+}
+
+.menu_panel_item:active {
+  background: aliceblue;
+}
+
+.voice_name {
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.voice_name:hover {
+  cursor:pointer;
+}
+
+#voice_ready {
+  font-size: 12px;
+  color: #44DB5E;
+
+}
+
+#voice_processing {
+  font-size: 12px;
+  color: #C8CCD0;
+}
+
+#voice_not {
+  font-size: 12px;
+  color: #C8CCD0;
+}

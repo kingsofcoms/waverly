@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+package/
+
+db.sqlite3
+.sqlite3
+*.sqlite3

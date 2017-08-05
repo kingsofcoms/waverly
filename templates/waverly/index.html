@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% csrf_token %}
+{% block content %}
+{% csrf_token %}
+<div class="main_background"><p style="bottom:0px;font-size:10px;color:#C8CCD0;padding-top:95vh;">resource for logo by mikicon of the the noun project.</p></div>
+<div class="main">
+
+  <div class="login_container">
+
+    <p class="login_title"><span style="font-weight:600;">WAVERLY</span> let’s you turn textual articles from the web into listenable audio snippets</p>
+    {% csrf_token %}
+
+    <p class="login_call_to_action">Enter your username and get inside!</p>
+    <form action="/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Enter">
+    </form>
+
+  </div>
+
+  </div>
+
+
+
+</div>
+
+{% endblock %}

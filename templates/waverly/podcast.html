@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% csrf_token %}
+{% block content %}
+
+
+<div class="menu_panel" style="display: none;">
+</div>
+
+<div class="podcast_background">
+  <div class="main">
+    <div class="podcast_header_boost">
+    </div>
+    {% if podcast %}
+
+      <script type="text/javascript">
+        document.title = 'Waverly - ' + '{{ podcast.title }}'
+      </script>
+
+      <div class="podcast_cover">
+      </div>
+
+      <div class="playback_button">⏩  x1.0</div>
+      <div class="menu_button"><img style="margin-top: 42.5%;width: 20px;opacity: 1;" src='{% static "images/dots.svg" %}' alt="Waverly menu"></div>
+
+      {% if podcast.url_audio %}
+        <audio id="audio" style="width:100%;display:inline-block;" src="{{ podcast.url_audio }}" controls></audio>
+      {% endif %}
+
+      <div class="podcast_content">
+
+        <script type="text/javascript">
+          if (('{{ podcast.url_image }}' == 'None') || ('{{ podcast.url_image }}' == '')) {
+            $( ".podcast_cover" ).css( "background-image", "url('https://s3-us-west-2.amazonaws.com/waverly-images/no-image.png')" )
+          }
+
+          else {
+            $( ".podcast_cover" ).css( "background-image", "url({{ podcast.url_image }})" )
+          }
+        </script>
+
+        {% if podcast.title %}
+          <h1 class="podcast_title">{{ podcast.title }}</h1>
+        {% endif %}
+
+        <div class="podcast_meta">
+          {% if podcast.authors %}
+            <p class="podcast_authors">{{ podcast.authors }}</p>
+          {% endif %}
+
+          {% if podcast.domain %}
+            <p class="podcast_domain">{{ podcast.domain }}</p>
+          {% endif %}
+        </div>
+
+
+
+        {% if podcast.text %}
+          <div class="podcast_text">{{ podcast.text|linebreaks }}</div>
+        {% endif %}
+
+      </div>
+
+
+    {% endif %}
+
+
+
+  </div>
+</div>
+
+<script type="text/javascript" src="{% static 'standalone.js' %}"></script>
+
+{% endblock %}

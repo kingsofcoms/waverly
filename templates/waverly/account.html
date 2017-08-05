@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% csrf_token %}
+{% block content %}
+{% csrf_token %}
+
+<div class="account_background">
+  <div class="main">
+
+    <div class="post">
+      <form action="{% url 'account' user_name %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Make Podcast From Article">
+      </form>
+    </div>
+
+    <script type="text/javascript">
+      document.title = 'Waverly - ' + '{{ original_name }}'
+    </script>
+
+      {% if processing|length == 0 %}
+      {% else %}
+        <div class="processing">
+          <p class="processing_title"><span style="font-size:18px;vertical-align: middle;">🔄</span> <span>Processing new articles...</span></p>
+        {% for pod in processing %}
+          <div class="processing_item">
+          <p style="margin-right:20px;"><a href="{{ pod.url_article }}" target="_blank">{{ pod.url_article }}</a></p>
+          <p style="margin-top:-8px;">added on {{ pod.date_saved }}</p>
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if podcasts|length == 0 and processing|length == 0 %}
+        <div class="no_podcasts">
+          <p style="font-size:18px">⬆️</p>
+          <p>no articles were added.</p>
+          <p>paste an article URL in the box above and click the button to create your first podcast.</p>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="color:#adb1b6;">or check out these examples:</div>
+
+        <div class="podcasts_item" onclick="location.href='/podcast/21';" style="cursor:pointer;">
+            <div class="podcasts_image" id="21" style="height:144px; background-image: url('https://waverly-images.s3.amazonaws.com/mini-batch.png'); -webkit-filter: hue-rotate(180deg);filter: hue-rotate(180deg);"></div>
+            <p class="podcasts_title">Improving the Realism of Synthetic Images</p>
+        </div>
+
+        <div class="podcasts_item" onclick="location.href='/podcast/15';" style="cursor:pointer;">
+            <div class="podcasts_image" id="15" style="height:144px; background-image: url('https://waverly-images.s3.amazonaws.com/15.jpeg'); -webkit-filter: hue-rotate(18deg);filter: hue-rotate(18deg);"></div>
+            <p class="podcasts_title">An Open Letter to the Phoenix Suns – From a Fan</p>
+        </div>
+        <br>
+        <br>
+      {% else %}
+      <script type="text/javascript">
+        $( ".account_background" ).css( "padding-bottom", "32px" )
+      </script>
+        <div class="podcasts">
+        {% for pod in podcasts %}
+
+          {% if pod.status == -1 %}
+              <div class="podcasts_item" onclick="window.open('{{ pod.url_article }}', '_blank');" style="cursor:pointer;">
+                <p class="podcasts_duration" style="margin-top:12px;"><span style="font-size:18px;vertical-align: middle;">➡️</span>&nbsp&nbspcould not process article</p>
+                <p class="podcasts_domain" style="word-wrap:break-word; margin-right:20px;">{{ pod.url_article }}</p>
+                <p class="podcasts_added">added on {{ pod.date_saved }}</p>
+              </div>
+          {% else %}
+            <div class="podcasts_item" onclick="location.href='/podcast/{{ pod.id }}';" style="cursor:pointer;">
+              <div class="podcasts_image" id="{{ pod.id }}">
+                <script type="text/javascript">
+                  if (('{{ pod.url_image }}' == 'None') || ('{{ pod.url_image }}' == '')) {
+                    $( "#{{ pod.id }}" ).css( "background-image", "url('https://s3-us-west-2.amazonaws.com/waverly-images/no-image.png')" )
+                  }
+
+                  else {
+                    $( "#{{ pod.id }}" ).css( "background-image", "url({{ pod.url_image }})" )
+                  }
+                </script>
+              </div>
+              <p class="podcasts_title">{{ pod.title }}</p>
+              <p class="podcasts_duration"><span style="font-size:18px;vertical-align: middle;">▶️</span>&nbsp&nbsp{{ pod.duration }} min.</p>
+              <p class="podcasts_domain">{{ pod.domain }}</p>
+              <p class="podcasts_added">added on {{ pod.date_saved }}</p>
+            </div>
+          {% endif %}
+
+        {% endfor %}
+        </div>
+
+      {% endif %}
+
+
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'standalone.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Waverly</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
+    <link rel="apple-touch-icon" href="{% static 'images/touch-icon.png' %}"/>
+    <link rel="apple-touch-startup-image" href="{% static 'images/launch.png' %}"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-title" content="Waverly"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <script type="text/javascript" src="{% static 'jquery-3.2.1.min.js' %}"></script>
+  </head>
+  <body ontouchstart="">
+
+    <div class="header">
+      <img src="{% static "images/logo.svg" %}" alt="Waverly Logo" class="logo"><span class="header_title">waverly</span>
+    </div>
+
+
+    {% block content %}
+    {% endblock content %}
+    <!-- <p class="version">waverly v0.3<p> -->
+
+  </body>
+</html>
