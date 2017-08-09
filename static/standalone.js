@@ -14,6 +14,87 @@ function isMobile() {
   return mobile;
 }
 
+
+// clear screen
+function removeBlackAndMenu(){
+  if ($('.menu_panel').length > 0) {
+    $( ".menu_panel" ).slideUp('fast', function(){
+      $('.menu_panel').empty();
+    });
+  }
+
+  $( ".homescreen" ).remove();
+  $( ".black" ).remove();
+  $('body').css('overflow', 'auto');
+  $('body').css('position', '');
+  $('.menu_panel_item').off();
+}
+
+// debug
+function debug(state){
+  if (state === true) {
+    $('body').click(function(e){
+        console.log(e.target);
+    });
+  } else if (state === false) {
+    $('body').off();
+  }
+}
+
+// test for adding a voice
+function voice(id) {
+
+  // checking if the user is on a podcast page
+  if (window.location.href.includes('podcast')) {
+    var url = window.location.href + 'voiceadd/' + id;
+    // console.log('☸️ this is the url: ' + url);
+    $.ajax({
+            url: url,
+            dataType: 'json',
+            success: function (data) {
+              console.log('☸️ server says:');
+              console.log(data);
+            },
+            error: function (err) {
+              console.log('❗️ something went wrong..');
+              console.log(err);
+            }
+          });
+  }
+  else {
+    console.log('❗️ please navigate to a podcast page.');
+  }
+
+}
+
+
+// test for getting voice statuses
+function status() {
+
+  // checking if the user is on a podcast page
+  if (window.location.href.includes('podcast')) {
+    var url = window.location.href + 'voicestatus/';
+    console.log('☸️ checking statuses for: ' + url);
+    $.ajax({
+            url: url,
+            dataType: 'json',
+            success: function (data) {
+              console.log('☸️ this is the return value:');
+              console.log(data);
+            },
+            error: function (err) {
+              console.log('❗️ something went wrong..');
+              console.log(err);
+            }
+          });
+  }
+  else {
+    console.log('❗️ please navigate to a podcast page.');
+  }
+
+}
+
+
 // checking if the app was opened in an ios standalone mode
 if (window.navigator.standalone){
 
@@ -92,8 +173,12 @@ function menuShareItems(){
   }
 
   $('.menu_panel').css('overflow', 'scroll');
-  $( ".menu_panel" ).prepend('<div class="menu_panel_title">Share Podcast</div><div id="share_01" class="menu_panel_item share">⤴️ Copy Link</div><a class="menu_panel_item share" href="whatsapp://send?text=' + window.location.href + '" data-action="share/whatsapp/share"><div id="share_02" class="menu_panel_item">⤴️ Share via WhatsApp</div></a>' );
 
+  if (isiOS() === false) {
+    $( ".menu_panel" ).prepend('<div id="share_01" class="menu_panel_item share">↗️ Copy Link to Podcast</div>');
+  }
+  $( ".menu_panel" ).prepend('<a class="menu_panel_item share" href="whatsapp://send?text=' + window.location.href + '" data-action="share/whatsapp/share"><div id="share_02" class="menu_panel_item">↗️ Share via WhatsApp</div></a>');
+  $( ".menu_panel" ).prepend('<div class="menu_panel_title">Share Podcast</div>');
 }
 
 // menu setup
@@ -236,59 +321,30 @@ function menuActions(data){
 
   });
 
-  $( '#share_01' ).on('click', function(){
+  $( '#share_01' ).on('click tap', function(){
 
-    // thanks to rphv from https://stackoverflow.com/questions/37308210/copy-current-url-button-javascript
-    function copyTextToClipboard(text) {
-    var textArea = document.createElement("textarea");
-
-    // Place in top-left corner of screen regardless of scroll position.
-    textArea.style.position = 'fixed';
-    textArea.style.top = 0;
-    textArea.style.left = 0;
-
-    // Ensure it has a small width and height. Setting to 1px / 1em
-    // doesn't work as this gives a negative w/h on some browsers.
-    textArea.style.width = '2em';
-    textArea.style.height = '2em';
-
-    // We don't need padding, reducing the size if it does flash render.
-    textArea.style.padding = 0;
-
-    // Clean up any borders.
-    textArea.style.border = 'none';
-    textArea.style.outline = 'none';
-    textArea.style.boxShadow = 'none';
-
-    // Avoid flash of white box if rendered for any reason.
-    textArea.style.background = 'transparent';
-
-
-    textArea.value = text;
-
-    document.body.appendChild(textArea);
-
-    textArea.select();
-
-    try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-    } catch (err) {
+    // thanks to Shaik Maqsood @ https://codepen.io/shaikmaqsood/pen/XmydxJ
+    /***********************
+    this solution doesn't work on ios
+    ************************/
+    function copyToClipboard(element) {
+      var $temp = $("<input style='font-size: 16px;'>");
+      $("body").append($temp);
+      $temp.val($(element).text()).select();
+      console.log($temp);
+      document.execCommand("copy");
+      $temp.remove();
     }
 
-    document.body.removeChild(textArea);
-    }
-
-    function CopyLink() {
-      copyTextToClipboard(location.href);
-    }
-
-    CopyLink();
+    var hiden_element = $('#hide_url');
+    copyToClipboard(hiden_element);
     removeBlackAndMenu();
 
   });
 
-  $( '#share_02' ).on('click', function(){
+
+
+  $( '#share_02' ).on('click tap', function(){
     removeBlackAndMenu();
   });
 }
@@ -352,86 +408,3 @@ $( '.playback_button' ).on('click', function(){
   }
 
 });
-
-
-
-// clear screen
-function removeBlackAndMenu(){
-  if ($('.menu_panel').length > 0) {
-    $( ".menu_panel" ).slideUp('fast', function(){
-      $('.menu_panel').empty();
-    });
-  }
-
-  $( ".homescreen" ).remove();
-  $( ".black" ).remove();
-  $('body').css('overflow', 'auto');
-  $('body').css('position', '');
-  $('.menu_panel_item').off();
-}
-
-
-// debug
-function debug(state){
-  if (state === true) {
-    $('body').click(function(e){
-        console.log(e.target);
-    });
-  } else if (state === false) {
-    $('body').off();
-  }
-}
-
-// test for adding a voice
-function voice(id) {
-
-  // checking if the user is on a podcast page
-  if (window.location.href.includes('podcast')) {
-    var url = window.location.href + 'voiceadd/' + id;
-    // console.log('☸️ this is the url: ' + url);
-    $.ajax({
-            url: url,
-            dataType: 'json',
-            success: function (data) {
-              console.log('☸️ server says:');
-              console.log(data);
-            },
-            error: function (err) {
-              console.log('❗️ something went wrong..');
-              console.log(err);
-            }
-          });
-  }
-  else {
-    console.log('❗️ please navigate to a podcast page.');
-  }
-
-}
-
-
-
-// test for getting voice statuses
-function status() {
-
-  // checking if the user is on a podcast page
-  if (window.location.href.includes('podcast')) {
-    var url = window.location.href + 'voicestatus/';
-    console.log('☸️ checking statuses for: ' + url);
-    $.ajax({
-            url: url,
-            dataType: 'json',
-            success: function (data) {
-              console.log('☸️ this is the return value:');
-              console.log(data);
-            },
-            error: function (err) {
-              console.log('❗️ something went wrong..');
-              console.log(err);
-            }
-          });
-  }
-  else {
-    console.log('❗️ please navigate to a podcast page.');
-  }
-
-}

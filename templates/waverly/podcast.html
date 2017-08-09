@@ -72,4 +72,11 @@
 
 <script type="text/javascript" src="{% static 'standalone.js' %}"></script>
 
+
+<script type="text/javascript">
+  $('body').append('<textarea class="hide_url" id="hide_url" style="display:none"></textarea>');
+  $('#hide_url').text(location.href);
+</script>
+
+
 {% endblock %}
