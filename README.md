@@ -21,11 +21,11 @@ This was tested only on iPhone's Safari.
 
 
 ## Deploy WAVERLY to Heroku
-> 💡 WAVERLY was built on AWS's S3 and Polly. Before starting the deployment process, please make sure you have the following details for your AWS account:
-  1. AWS Access Key
-  1. AWS Secret Access Key
-  1. S3 bucket for storing article image files
-  1. S3 bucket for storing audio files
+> 💡 WAVERLY was built on AWS's S3 and Polly. Before starting the > deployment process, please make sure you have the following details for your AWS account:
+>  1. AWS Access Key
+>  1. AWS Secret Access Key
+>  1. S3 bucket for storing article image files
+>  1. S3 bucket for storing audio files
 
 Follow these steps:
 
