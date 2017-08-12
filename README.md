@@ -27,6 +27,8 @@ This was tested only on iPhone's Safari.
   1. S3 bucket for storing article image files
   1. S3 bucket for storing audio files
 
+Follow these steps:
+
 1. Clone WAVERLY's repository
 
 2. Create heroku app
