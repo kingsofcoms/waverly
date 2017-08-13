@@ -4,7 +4,7 @@
 
 
 ## Overview
-Project WAVERLY is a web application, that uses text-to-speech technology provided by [Amazon Polly](https://aws.amazon.com/polly/) to allow users to save textual articles and to convert them into an audio snippet (similar to a short podcast episode) that sounds human-like.
+WAVERLY is a web application, that uses text-to-speech technology, provided by [Amazon Polly](https://aws.amazon.com/polly/), to allow users to save textual articles and to convert them into audio snippets (similar to a short podcast episode), which sound human-like.
 
 WAVERLY supports only English articles.
 
